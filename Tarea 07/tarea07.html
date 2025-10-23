@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarea 7: Cursor que deje estela</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+  }
+    .trail {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: rgb(255, 0, 170);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 1;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+  </style>
+</head>
+
+
+<body>
+  <script>
+    document.addEventListener("mousemove", e => {
+
+      const trail = document.createElement("div");
+      trail.className = "trail";
+      trail.style.left = e.pageX + "px";
+      trail.style.top = e.pageY + "px";
+
+      document.body.appendChild(trail);
+
+     
+      setTimeout(() => {
+        trail.style.opacity = 0;
+        trail.style.transform = "scale(2)";
+      }, 10);
+
+      setTimeout(() => {
+        trail.remove();
+      }, 400);
+    });
+
+  </script>
+</body>
+</html>
